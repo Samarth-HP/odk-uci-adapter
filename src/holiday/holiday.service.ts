@@ -13,24 +13,28 @@ export class HolidayService {
   ) {
   }
 
-  async registerSms(data: any, string): Promise<any> {
+  async registerSms(data: any, string, id): Promise<any> {
     let status = 404;
     console.log({ data });
     let resp = this.httpService.post(`${this.configService.get<string>("UCI_URL")}/message/send`, data).pipe(map((response: any) => {
       response.data;
+      console.log(response.data.status);
+      console.log(response);
       status = response.data.status;
+      if (status === 200) {
+        this.updateSubmissionStatus(id);
+        console.log("message sent");
+      }
     }), catchError(e => {
       throw new HttpException(e.response.data, e.response.status);
     })).subscribe();
-    if (status === 200) {
-      const res = await this.updateSubmissionStatus(string);
-    }
+
     return resp;
   }
 
-  async updateSubmissionStatus(string): Promise<any> {
-    return this.prisma.submission.updateMany({
-      where: { xml_string: string },
+  async updateSubmissionStatus(id): Promise<any> {
+    return this.prisma.submission.update({
+      where: { id: id },
       data: { status: "sent" }
     });
   }

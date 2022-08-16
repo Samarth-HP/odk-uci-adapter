@@ -13,7 +13,7 @@ constructor(private readonly holidayService: HolidayService){}
   @Process('submit')
   handleSubmit(job: Job) {
     console.log('Start transcoding...');
-    console.log({ex: job.data.data.xml_string});
+    // console.log({ex: job.data.data.xml_string});
     console.log('Transcoding completed');
     let dummyBody;
     // parseString(job.data.data.xml_string, function (err, results) {
@@ -52,6 +52,6 @@ constructor(private readonly holidayService: HolidayService){}
     console.log('Sending')
     // const res =
     console.log('Done')
-    return this.holidayService.registerSms(dummyBody,job.data.data.xml_string);
+    return this.holidayService.registerSms(dummyBody,job.data.data.xml_string, job.data.data.id);
   }
 }
