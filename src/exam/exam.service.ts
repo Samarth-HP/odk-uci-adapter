@@ -1,11 +1,11 @@
-import { HttpService } from "@nestjs/axios";
 import { HttpException, Injectable } from "@nestjs/common";
+import { HttpService } from "@nestjs/axios";
 import { ConfigService } from "@nestjs/config";
-import { catchError, map, tap } from "rxjs/operators";
 import { PrismaService } from "../PrismaService";
+import { catchError, map } from "rxjs/operators";
 
 @Injectable()
-export class HolidayService {
+export class ExamService {
   constructor(
     private readonly httpService: HttpService,
     private configService: ConfigService,

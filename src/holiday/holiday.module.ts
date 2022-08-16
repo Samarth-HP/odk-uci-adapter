@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { HolidayController } from './holiday.controller';
 import { HolidayProcessor } from './holiday.processor';
 import { HolidayService } from './holiday.service';
+import { PrismaService } from "../PrismaService";
 
 @Module({
   imports: [
@@ -13,6 +14,6 @@ import { HolidayService } from './holiday.service';
     HttpModule,
   ],
   controllers: [HolidayController],
-  providers: [HolidayProcessor, HolidayService],
+  providers: [HolidayProcessor, HolidayService, PrismaService],
 })
 export class HolidayModule {}
