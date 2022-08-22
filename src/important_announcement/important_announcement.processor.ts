@@ -1,14 +1,11 @@
-import { Process, Processor } from '@nestjs/bull';
-import { parseString } from "xml2js";
-import { Job } from 'bull';
-import { Post } from '@nestjs/common';
-import { parse } from 'path';
-import { HolidayService } from './holiday.service';
+import { ExamResultsService } from "../exam_results/exam_results.service";
+import { Process } from "@nestjs/bull";
+import { Job } from "bull";
+import { ImportantAnnouncementService } from "./important_announcement.service";
 
-@Processor('holiday')
-export class HolidayProcessor {
+export class ImportantAnnouncementProcessor {
 //   private readonly logger = new Logger(HolidayProcessor.name);
-constructor(private readonly holidayService: HolidayService){}
+  constructor(private readonly importantAnnouncementService: ImportantAnnouncementService){}
 
   @Process('submit')
   handleSubmit(job: Job) {
@@ -34,27 +31,22 @@ constructor(private readonly holidayService: HolidayService){}
     //   }
     // });
 
+    console.log('Xml parsed');
     dummyBody = {
       "adapterId": "4e0c568c-7c42-4f88-b1d6-392ad16b8546",
       "to": {
         "userID": "8054307708",
         "deviceType": "PHONE",
         "meta": {
-          "templateId": "1007352034734612528"
+          "templateId": "1007822688560433203"
         }
       },
       "payload": {
-        "text": `नमस्कार, प्रिय अभिभावकस्कूल की छुट्टियां 2022-08-11 से 2022-08-11 तक हैं। कृपया {#var#} को {#var#} से रोज़ स्कूल भेजें। - e-Samwad`
-        // "text": "Kindly note your OTP @123@. Submission of the OTP will be taken as authentication that you have personally verified and overseen the distribution of smartphone to the mentioned student ID of your school. Thank you! - Samagra Shiksha, Himachal Pradesh"
+        "text": `नमस्कार, प्रिय अभिभावक Prerna का आकलन  2022-08-11 से 2022-08-21 तक होना है।कृपया सुनिश्चित करें कि Prerna अभी से ही इसकी तैयारी करें। - e-Samwad \n`
       }
     }
-
-    // const res = this.holidayService.updateSubmissionStatus(job.data.data.xml_string);
-    // console.log(res)
-    console.log({dummyBody})
     console.log('Sending')
-    // const res =
-    console.log('Done')
-    return this.holidayService.registerSms(dummyBody,job.data.data.xml_string, job.data.data.id);
+    return this.importantAnnouncementService.registerSms(dummyBody,job.data.data.xml_string, job.data.data.id);
   }
 }
+

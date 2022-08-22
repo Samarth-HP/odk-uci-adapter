@@ -5,6 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HolidayModule } from './holiday/holiday.module';
 import { ExamModule } from './exam/exam.module';
+import { HomeworkModule } from './homework/homework.module';
+import { ExamResultsModule } from './exam_results/exam_results.module';
+import { MeetingsModule } from './meetings/meetings.module';
+import { ImportantAnnouncementModule } from './important_announcement/important_announcement.module';
 
 @Module({
   imports: [
@@ -24,6 +28,10 @@ import { ExamModule } from './exam/exam.module';
   }),
   HolidayModule,
   ExamModule,
+  HomeworkModule,
+  ExamResultsModule,
+  MeetingsModule,
+  ImportantAnnouncementModule,
 ],
   controllers: [AppController],
   providers: [AppService],
