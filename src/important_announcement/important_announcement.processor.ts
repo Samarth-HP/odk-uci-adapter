@@ -1,8 +1,9 @@
 import { ExamResultsService } from "../exam_results/exam_results.service";
-import { Process } from "@nestjs/bull";
+import { Process, Processor } from "@nestjs/bull";
 import { Job } from "bull";
 import { ImportantAnnouncementService } from "./important_announcement.service";
 
+@Processor('important-announcement')
 export class ImportantAnnouncementProcessor {
 //   private readonly logger = new Logger(HolidayProcessor.name);
   constructor(private readonly importantAnnouncementService: ImportantAnnouncementService){}
@@ -35,14 +36,14 @@ export class ImportantAnnouncementProcessor {
     dummyBody = {
       "adapterId": "4e0c568c-7c42-4f88-b1d6-392ad16b8546",
       "to": {
-        "userID": "8054307708",
+        "userID": "7982852223",
         "deviceType": "PHONE",
         "meta": {
-          "templateId": "1007822688560433203"
+          "templateId": "1007422879154454824"
         }
       },
       "payload": {
-        "text": `नमस्कार, प्रिय अभिभावक Prerna का आकलन  2022-08-11 से 2022-08-21 तक होना है।कृपया सुनिश्चित करें कि Prerna अभी से ही इसकी तैयारी करें। - e-Samwad \n`
+        "text": `प्रिय अभिभावक! कृपया आपके पुत्र/पुत्री के विद्यालय में {#var#} को होने वाली {#var#} में अपनी भागीदारी सुनिश्चित करें। समग्र शिक्षा, हिमाचल प्रदेश`
       }
     }
     console.log('Sending')

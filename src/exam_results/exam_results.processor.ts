@@ -35,7 +35,7 @@ export class ExamResultsProcessor {
     dummyBody = {
       "adapterId": "4e0c568c-7c42-4f88-b1d6-392ad16b8546",
       "to": {
-        "userID": "8054307708",
+        "userID": "7982852223",
         "deviceType": "PHONE",
         "meta": {
           "templateId": "1007822688560433203"
